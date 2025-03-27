@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Inventory{% endblock %}
+
+{% block page_title %}Inventory{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Inventory</h2>
+    <p>Manage inventory here.</p>
+
+    <!-- Add Product Form -->
+    <div class="add-product-form">
+        <h3>Add New Product</h3>
+        <form method="POST" action="{% url 'add_product' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="product_name">Product Name</label>
+                <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" placeholder="Enter price" required>
+            </div>
+            <button type="submit" class="add-btn">Add Product</button>
+        </form>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="table-container">
+        <h3>Product List</h3>
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Rows -->
+                <tr>
+                    <td>101</td>
+                    <td>Product A</td>
+                    <td>50</td>
+                    <td>$25</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Product B</td>
+                    <td>30</td>
+                    <td>$40</td>
+                    <td>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                <!-- Add more rows dynamically -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,246 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    background: #f9f9f9; /* Light white shade */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+    color: #333;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: #fff; /* Ensure a solid background */
+    z-index: 10; /* Ensure it is above any other layout */
+    position: relative;
+}
+
+.auth-box {
+    background: #fff; /* Pure white background */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Input Fields */
+.auth-box input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: #f9f9f9; /* Light background for inputs */
+}
+
+.auth-box input:focus {
+    border-color: #1e90ff; /* Blue focus border */
+    outline: none;
+}
+
+/* Buttons */
+.auth-box button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #107511, #2f9f42); /* Blue gradient */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-box button:hover {
+    background: linear-gradient(135deg, #70cc25, #1e90ff); /* Reverse gradient */
+}
+
+/* Links */
+.auth-box a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-size: 14px; /* Adjusted font size for links */
+    font-weight: 500; /* Ensure consistent weight */
+    transition: color 0.3s ease;
+}
+
+.auth-box a:hover {
+    color: #2575fc;
+    text-decoration: underline; /* Optional hover effect */
+}
+
+/* Register Text */
+.register-text {
+    font-size: 14px; /* Reduce font size */
+    text-align: center;
+    color: #666; /* Lighter color */
+    margin-top: 10px;
+}
+
+.register-text a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.register-text a:hover {
+    color: #2575fc;
+    text-decoration: underline;
+}
+
+/* Messages */
+.message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.message.success {
+    background: #10872c;
+    color: #e2ebe4;
+    border: 1px solid #289d43;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message.warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.message.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Animated Message Container */
+#animated-message-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.animated-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease forwards;
+}
+
+.animated-message.success i {
+    font-size: 20px;
+    color: #28a745;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .auth-box {
+        width: 90%;
+        padding: 30px;
+    }
+
+    .auth-box h2 {
+        font-size: 24px;
+    }
+
+    .auth-box input {
+        font-size: 14px;
+    }
+
+    .auth-box button {
+        font-size: 16px;
+    }
+
+    .auth-box a {
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+}

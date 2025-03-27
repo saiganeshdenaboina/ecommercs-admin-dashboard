@@ -1,64 +1,62 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    {% if user.is_authenticated %}
-        <div class="sidebar" id="sidebar">
-            <button class="toggle-btn" onclick="toggleSidebar()">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <a href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
-            <a href="#"><i class="fa-solid fa-box"></i> Products</a>
-            <a href="#"><i class="fa-solid fa-users"></i> Customers</a>
-            <a href="#"><i class="fa-solid fa-chart-line"></i> Sales</a>
-            <a href="#"><i class="fa-solid fa-credit-card"></i> Transactions</a>
-            <a href="#"><i class="fa-solid fa-chart-bar"></i> Report & Analytics</a>
-            <a href="#"><i class="fa-solid fa-warehouse"></i> Inventory</a>
-            <a href="#"><i class="fa-solid fa-cog"></i> Settings</a>
-        </div>
-        
-        <div class="main-container" id="mainContainer">
-            <div class="header">
-                <div class="header-container">
-                    <h2 id="section-title">Dashboard</h2>
-                    <div class="search-container">
-                        <input type="text" class="search-bar" placeholder="Search...">
-                    </div>
-                    <div class="icons-container">
-                        <i class="fa-solid fa-bell"></i>
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
-                </div>
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h2><center>Welcome to the Admin Dashboard</center></h2>
+
+    <!-- Statistic Cards Section -->
+    <div class="cards-container">
+        <div class="card animate-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-dollar-sign"></i>
             </div>
-            <div class="content" id="main-content">
-                <h2>Welcome to the Admin Dashboard</h2>
-                <div class="cards">
-                    <div class="card">Today's Sales: $500</div>
-                    <div class="card">Weekly Sales: $3500</div>
-                    <div class="card">Monthly Sales: $14,000</div>
-                    <div class="card">Yearly Sales: $168,000</div>
-                </div>
-                <div class="graph-container">
-                    <canvas id="salesChart" width="400" height="200"></canvas>
-                </div>
+            <div class="card-content">
+                <h3>Total Revenue</h3>
+                <p>$50,000</p>
             </div>
         </div>
-    {% else %}
-        <script>
-            window.location.href = "{% url 'login' %}";
-        </script>
-    {% endif %}
-    
-    <script src="{% static 'dashboard/js/script.js' %}"></script>
-</body>
-</html>
+        <div class="card animate-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-shopping-cart"></i>
+            </div>
+            <div class="card-content">
+                <h3>Total Orders</h3>
+                <p>1,200</p>
+            </div>
+        </div>
+        <div class="card animate-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="card-content">
+                <h3>Total Customers</h3>
+                <p>450</p>
+            </div>
+        </div>
+        <div class="card animate-card">
+            <div class="card-icon">
+                <i class="fa-solid fa-box"></i>
+            </div>
+            <div class="card-content">
+                <h3>Products in Stock</h3>
+                <p>3,000</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overview Graph -->
+    <div class="graph-container animate-graph">
+        <h3>Revenue Overview</h3>
+        <div class="graph-wrapper">
+            <canvas id="overviewChart" data-chart='{
+                "labels": ["January", "February", "March", "April", "May"],
+                "data": [1000, 2000, 3000, 4000, 5000]
+            }'></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}

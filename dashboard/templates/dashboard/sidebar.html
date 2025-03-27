@@ -1,0 +1,35 @@
+<div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" title="Dashboard">
+        <i class="fa-solid fa-gauge"></i> <span class="sidebar-text">Dashboard</span>
+    </a>
+    <a href="{% url 'orders' %}" class="{% if request.resolver_match.url_name == 'orders' %}active{% endif %}" title="Orders">
+        <i class="fa-solid fa-cart-shopping"></i> <span class="sidebar-text">Orders</span>
+    </a>
+    <a href="{% url 'products' %}" class="{% if request.resolver_match.url_name == 'products' %}active{% endif %}" title="Products">
+        <i class="fa-solid fa-box"></i> <span class="sidebar-text">Products</span>
+    </a>
+    <a href="{% url 'customers' %}" class="{% if request.resolver_match.url_name == 'customers' %}active{% endif %}" title="Customers">
+        <i class="fa-solid fa-users"></i> <span class="sidebar-text">Customers</span>
+    </a>
+    <a href="{% url 'sales' %}" class="{% if request.resolver_match.url_name == 'sales' %}active{% endif %}" title="Sales">
+        <i class="fa-solid fa-chart-line"></i> <span class="sidebar-text">Sales</span>
+    </a>
+    <a href="{% url 'transactions' %}" class="{% if request.resolver_match.url_name == 'transactions' %}active{% endif %}" title="Transactions">
+        <i class="fa-solid fa-credit-card"></i> <span class="sidebar-text">Transactions</span>
+    </a>
+    <a href="{% url 'analytics' %}" class="{% if request.resolver_match.url_name == 'analytics' %}active{% endif %}" title="Analytics">
+        <i class="fa-solid fa-chart-bar"></i> <span class="sidebar-text">Reports&Analytics</span>
+    </a>
+    <a href="{% url 'inventory' %}" class="{% if request.resolver_match.url_name == 'inventory' %}active{% endif %}" title="Inventory">
+        <i class="fa-solid fa-warehouse"></i> <span class="sidebar-text">Inventory</span>
+    </a>
+    <a href="{% url 'settings' %}" class="{% if request.resolver_match.url_name == 'settings' %}active{% endif %}" title="Settings">
+        <i class="fa-solid fa-cog"></i> <span class="sidebar-text">Settings</span>
+    </a>
+    <a href="{% url 'logout' %}" title="Logout">
+        <i class="fa-solid fa-sign-out"></i> <span class="sidebar-text">Logout</span>
+    </a>
+</div>

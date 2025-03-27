@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Admin Dashboard{% endblock %}</title>
-    {% load static %}
+    
     <!-- External CSS -->
     <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
     
@@ -17,52 +17,65 @@
     <script src="{% static 'dashboard/js/script.js' %}"></script>
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <!-- Sidebar -->
+        {% include 'dashboard/sidebar.html' %}
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <button class="toggle-btn" onclick="toggleSidebar()">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="profile-section">
-            <img src="{% static 'images/profile.jpg' %}" alt="Admin Profile">
-            <h5>Admin Name</h5>
-        </div>
-        <a href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge"></i> <span class="sidebar-text">Dashboard</span></a>
-        <a href="{% url 'orders' %}"><i class="fa-solid fa-cart-shopping"></i> <span class="sidebar-text">Orders</span></a>
-        <a href="{% url 'products' %}"><i class="fa-solid fa-box"></i> <span class="sidebar-text">Products</span></a>
-        <a href="{% url 'customers' %}"><i class="fa-solid fa-users"></i> <span class="sidebar-text">Customers</span></a>
-        <a href="{% url 'sales' %}"><i class="fa-solid fa-chart-line"></i> <span class="sidebar-text">Sales</span></a>
-        <a href="{% url 'transactions' %}"><i class="fa-solid fa-credit-card"></i> <span class="sidebar-text">Transactions</span></a>
-        <a href="{% url 'analytics' %}"><i class="fa-solid fa-chart-bar"></i> <span class="sidebar-text">Analytics</span></a>
-        <a href="{% url 'inventory' %}"><i class="fa-solid fa-warehouse"></i> <span class="sidebar-text">Inventory</span></a>
-        <a href="{% url 'settings' %}"><i class="fa-solid fa-cog"></i> <span class="sidebar-text">Settings</span></a>
-        <a href="{% url 'logout' %}"><i class="fa-solid fa-sign-out"></i> <span class="sidebar-text">Logout</span></a>
-    </div>
+        <!-- Main Content -->
+        <div class="main-container" id="mainContainer">
+            <div class="header">
+                <div class="header-container">
+                    <!-- Section Title -->
+                    <div class="header-left">
+                        <h2 id="section-title">{% block page_title %}Dashboard{% endblock %}</h2>
+                    </div>
 
-    <!-- Main Content -->
-    <div class="main-container" id="mainContainer">
-        <div class="header">
-            <div class="header-container">
-                <h2 id="section-title">{% block page_title %}Dashboard{% endblock %}</h2>
-                <div class="search-container">
-                    <input type="text" class="search-bar" id="searchBar" placeholder="Search..." onkeyup="searchFunction()">
+                    <!-- Search Bar -->
+                    <div class="header-center">
+                        <div class="search-container">
+                            <input type="text" class="search-bar" id="searchBar" placeholder="Search..." onkeyup="searchFunction()">
+                            <button class="search-btn"><i class="fa-solid fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Header Icons -->
+                    <div class="header-right">
+                        <!-- Notifications -->
+                        <div class="dropdown">
+                            <button onclick="toggleNotifications()" title="Notifications">
+                                <i class="fa-solid fa-bell"></i>
+                            </button>
+                            <div id="notificationsDropdown" class="dropdown-menu">
+                                <p>No new notifications</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="dropdown">
+                            <button title="Email">
+                                <i class="fa-solid fa-envelope"></i>
+                            </button>
+                        </div>
+
+                        <!-- Dark Mode -->
+                        <button onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+
+                        <!-- Logout -->
+                        <a href="{% url 'logout' %}" class="logout-btn" title="Logout">
+                            <i class="fa-solid fa-sign-out"></i> Logout
+                        </a>
+                    </div>
                 </div>
-                <div class="icons-container">
-                    <i class="fa-solid fa-bell"></i>
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
-                <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+            </div>
 
+            <div class="content" id="main-content">
+                {% block content %}{% endblock %}
             </div>
         </div>
-
-        <!-- Dynamic Content -->
-        <div class="content" id="main-content">
-            {% block content %}
-            <!-- Page-specific content will go here -->
-            {% endblock %}
-        </div>
-    </div>
-
+    {% else %}
+        <meta http-equiv="refresh" content="0;url={% url 'login' %}">
+    {% endif %}
 </body>
 </html>

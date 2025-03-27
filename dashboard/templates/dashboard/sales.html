@@ -1,0 +1,62 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Sales{% endblock %}
+
+{% block page_title %}Sales{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Sales</h2>
+    <p>View and analyze sales data here.</p>
+
+    <!-- Sales Table -->
+    <div class="table-container">
+        <table class="sales-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Rows -->
+                <tr>
+                    <td>ORD001</td>
+                    <td>John Doe</td>
+                    <td>2023-10-01</td>
+                    <td>$150</td>
+                    <td>Completed</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ORD002</td>
+                    <td>Jane Smith</td>
+                    <td>2023-10-02</td>
+                    <td>$200</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sales Chart -->
+    <div class="graph-container">
+        <h3>Sales Performance</h3>
+        <div class="graph-wrapper">
+            <canvas id="salesPerformanceChart" data-chart='{
+                "labels": {{ sales_labels|default:"[]"|safe }},
+                "data": {{ sales_data|default:"[]"|safe }}
+            }'></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}

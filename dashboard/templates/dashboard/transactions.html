@@ -1,0 +1,49 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block page_title %}Transactions{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Transactions</h2>
+    <p>Manage all transactions here.</p>
+
+    <!-- Transactions Table -->
+    <div class="table-container">
+        <table class="transactions-table">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Rows -->
+                <tr>
+                    <td>TRX001</td>
+                    <td>2023-10-01</td>
+                    <td>$500</td>
+                    <td>Completed</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TRX002</td>
+                    <td>2023-10-02</td>
+                    <td>$300</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                </tr>
+                <!-- Add more rows dynamically -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

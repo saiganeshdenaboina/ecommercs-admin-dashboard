@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Analytics{% endblock %}
+
+{% block page_title %}Analytics{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <h2>Analytics</h2>
+    <p>View analytics and reports here.</p>
+
+    <!-- Analytics Cards -->
+    <div class="analytics-cards-container">
+        <div class="analytics-card">
+            <h3>Total Sales</h3>
+            <p>${{ total_sales|default:"0" }}</p>
+        </div>
+        <div class="analytics-card">
+            <h3>New Customers</h3>
+            <p>{{ new_customers|default:"0" }}</p>
+        </div>
+        <div class="analytics-card">
+            <h3>Revenue Growth</h3>
+            <p>{{ revenue_growth|default:"0%" }}</p>
+        </div>
+        <div class="analytics-card">
+            <h3>Orders Completed</h3>
+            <p>{{ orders_completed|default:"0" }}</p>
+        </div>
+    </div>
+
+    <!-- Analytics Chart -->
+    <div class="graph-container">
+        <h3>Sales Overview</h3>
+        <div class="graph-wrapper">
+            <canvas id="analyticsChart" data-chart='{
+                "labels": {{ sales_labels|default:"[]"|safe }},
+                "data": {{ sales_data|default:"[]"|safe }}
+            }'></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
